@@ -34,7 +34,7 @@ class Files extends \yii\db\ActiveRecord
             [['description'], 'string'],
             [['create_at', 'update_at'], 'safe'],
             [['title', 'path_file'], 'string', 'max' => 255],
-            [['files'], 'file'],
+            [['file'], 'file','skipOnEmpty' => false],
         ];
     }
 
@@ -62,17 +62,6 @@ class Files extends \yii\db\ActiveRecord
         return new FilesQuery(get_called_class());
     }
 
-    public function upload()
-    {
-        if ($this->validate()) 
-        { 
-            $path='files/' . md5(uniqid(rand(), true)) . '.' . $file->extension;
-            $file->saveAs($path);
-            return $path;
-        } else {
-            return false;
-        }
-    }
 
     
     public function beforeSave($insert)

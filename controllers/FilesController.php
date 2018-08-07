@@ -8,6 +8,7 @@ use app\models\FilesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * FilesController implements the CRUD actions for Files model.
@@ -68,15 +69,15 @@ class FilesController extends Controller
 
         if ($model->load(Yii::$app->request->post()) ) {
             
-                $model->files = UploadedFile::getInstances($model, 'file');
-                if ($path = $model->upload()) {
-                // file is uploaded successfully
+                $model->file = UploadedFile::getInstance($model, 'file');
+
+                if ($model->file && $model->validate()) {  
+                    $path= 'files/' . md5(uniqid(rand(), true)) .'.' . $model->file->extension;         
+                    $model->file->saveAs($path);
                     $model->path_file=$path;
-                    $model->save();  
+                    $model->save();
+                    return $this->redirect(['view', 'id' => $model->id]);
                 }
-               
-         return $this->redirect(['view', 'id' => $model->id]);
-            
         }
 
         return $this->render('create', [

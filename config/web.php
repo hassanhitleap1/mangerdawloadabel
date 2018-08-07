@@ -44,12 +44,15 @@ $config = [
         ],
         'db' => $db,
         
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ],
+        // 'urlManager' => [
+        //     'enablePrettyUrl' => true,
+        //     'showScriptName' => false,
+        //     'enableStrictParsing' => false,
+        //     'rules' => [
+        //         'posts' => 'post/index',
+        //         'post/<id:\d+>' => 'post/view',
+        //     ],
+        // ],
         
     ],
     'params' => $params,
