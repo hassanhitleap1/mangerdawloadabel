@@ -31,6 +31,7 @@ class Files extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['title'],'required'],
             [['description'], 'string'],
             [['create_at', 'update_at'], 'safe'],
             [['title', 'path_file'], 'string', 'max' => 255],

@@ -48,11 +48,11 @@ $config = [
             'translations' => [
                 'app*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@app/messages',
-                    'sourceLanguage' => 'ar',
+                    // 'basePath' => '@web/messages',
+                    // 'sourceLanguage' => 'ar',
                     'fileMap' => [
                         'app' => 'app.php',
-                            //'app/error' => 'error.php',
+                        'app/error' => 'error.php',
                     ],
                 ],
             ],
