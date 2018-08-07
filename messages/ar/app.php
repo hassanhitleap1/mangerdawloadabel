@@ -18,5 +18,6 @@ return [
     'Update_At'=>'تاريخ التعديل',
     'Create_Files'=>'انشاء ملف',
     'File'=>'ملف',
+    'Save'=>'حفظ',
 
 ];
