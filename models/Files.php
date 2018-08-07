@@ -51,6 +51,7 @@ class Files extends \yii\db\ActiveRecord
             'path_file' => Yii::t('app', 'Path_File'),
             'create_at' => Yii::t('app', 'Create_At'),
             'update_at' => Yii::t('app', 'Update_At'),
+            'file' => Yii::t('app', 'File'),
         ];
     }
 

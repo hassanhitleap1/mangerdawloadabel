@@ -17,4 +17,5 @@ return [
     'Create_At'=>'Create At',
     'Update_At'=>'Update At',
     'Create_Files'=>'Create Files',
+    'File'=>'File',
 ];
