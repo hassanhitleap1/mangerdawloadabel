@@ -25,9 +25,9 @@ $this->title = 'My Yii Application';
 <div class="row">
     <div class="col-md-12">
         <?php
-        // echo LinkPager::widget([
-        //     'pagination' => $pages,
-        // ]);
+        echo LinkPager::widget([
+            'pagination' => $pagination,
+        ]);
         ?>
     </div>
 </div>

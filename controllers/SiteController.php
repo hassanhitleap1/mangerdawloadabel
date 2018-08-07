@@ -10,6 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Files;
+use yii\data\Pagination;
 
 class SiteController extends Controller
 {
@@ -62,8 +63,21 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $files= Files::find()->all();
-        return $this->render('index',['files'=>$files]);
+        // $files= Files::find()->all();
+        // return $this->render('index',['files'=>$files]);
+        $query = Files::find();
+        $countQuery = clone $query;
+        $pagination = new Pagination([
+            'defaultPageSize'=>30,
+            'totalCount' => $countQuery->count()]);
+            $files = $query->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+
+            return $this->render('index',[
+                'files'=>$files,
+                'pagination'=>$pagination,
+                ]);
     }
 
     /**
