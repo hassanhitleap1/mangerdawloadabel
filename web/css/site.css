@@ -113,3 +113,12 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+/* box dawnoad */
+.box{   box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1); }
+a:hover, a:focus, a:active {
+    text-decoration: none;
+}
+a{
+    text-decoration: none;
+}
