@@ -28,7 +28,7 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <?php
+<?php
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
@@ -36,23 +36,28 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+    $menuItems = [
+        ['label' =>  Yii::t('app','Home'), 'url' => ['/site/index']],
+     
+    ];
+    if (Yii::$app->user->isGuest) {
+      
+        $menuItems[] = ['label' =>  Yii::t('app','Login'), 'url' => ['/site/login']];
+    } else {
+        $menuItems[] = ['label' =>  Yii::t('app','Files'), 'url' => ['/Files/index']];
+        $menuItems[] = '<li>'
+            . Html::beginForm(['/site/logout'], 'post')
+            . Html::submitButton(
+                Yii::t('app','Logout'). ' (' . Yii::$app->user->identity->username . ')',
+                ['class' => 'btn btn-link logout']
+            )
+            . Html::endForm()
+            . '</li>';
+
+    }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => Yii::t('app','Home'), 'url' => ['/site/index']],
-            Yii::$app->user->isGuest ? (
-                ['label' => Yii::t('app','Login'), 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    Yii::t('app','Logout').' (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
+        'items' => $menuItems,
     ]);
     NavBar::end();
     ?>
